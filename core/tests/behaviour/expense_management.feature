@@ -48,4 +48,23 @@ Feature: Gestión de gastos
     And elimino el gasto con id 3
     Then el total de dinero gastado debe ser 40 euros
   
+  Scenario: Verificar que los nombres de los gastos en la lista son correctos
+    Given un gestor de gastos vacío
+    When añado un gasto de 5 euros llamado Café
+    And añado un gasto de 10 euros llamado Comida
+    Then el primer gasto de la lista debe llamarse "Café"
+    And el segundo gasto de la lista debe llamarse "Comida"
+
+  Scenario: Actualizar un gasto existente cambia el total acumulado
+    Given un gestor con un gasto de 5 euros llamado "Café"
+    When actualizo el gasto con id 1 con nuevo título "Café Latte" y monto 10
+    Then el total de dinero gastado debe ser 10 euros
+    And el primer gasto de la lista debe llamarse "Café Latte"
+
+  Scenario: Calcular el total de gastos por mes correctamente
+    Given un gestor de gastos vacío
+    When añado un gasto de 20 euros llamado "Libros" con fecha "2025-01-15"
+    And añado un gasto de 15 euros llamado "Cena" con fecha "2025-01-20"
+    Then el mes "2025-01" debe sumar 35 euros
+  
   
