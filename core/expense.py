@@ -22,7 +22,7 @@ class Expense:
         """
         if not self.title:
             raise EmptyTitleError()
-        
+
         if self.amount <= 0:
             raise InvalidAmountError("El importe debe ser mayor que 0")
 

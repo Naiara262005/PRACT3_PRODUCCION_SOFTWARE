@@ -87,15 +87,15 @@ def test_create_multiple_expenses_and_list():
     - Luego, se obtiene el listado de todos los gastos almacenados y se comprueba lo siguiente:
         - Ambos títulos ("Pan" y "Leche") están presentes en la lista de gastos retornada.
         - El número total de gastos en el sistema es exactamente dos, lo que verifica que no se sobrescriben ni se duplican registros al crear múltiples gastos.
-    - Este test valida que la función de listado refleja fielmente todos los gastos registrados hasta el momento. 
+    - Este test valida que la función de listado refleja fielmente todos los gastos registrados hasta el momento.
     """
     service = create_service()
 
     service.create_expense("Pan", 3, "Mercado", date(2025, 1, 10))
     service.create_expense("Leche", 4, "Supermercado", date(2025, 1, 20))
-    
+
     expenses = service.list_expenses()
-    
+
     titles = [e.title for e in expenses]
     assert len(expenses) == 2
     assert "Pan" in titles
