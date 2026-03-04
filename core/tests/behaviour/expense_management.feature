@@ -52,8 +52,8 @@ Feature: Gestión de gastos
     Given un gestor de gastos vacío
     When añado un gasto de 5 euros llamado Café
     And añado un gasto de 10 euros llamado Comida
-    Then el primer gasto de la lista debe llamarse "Café"
-    And el segundo gasto de la lista debe llamarse "Comida"
+    Then el primer gasto de la lista debe llamarse Café
+    And el segundo gasto de la lista debe llamarse Comida
 
   Scenario: Actualizar un gasto existente cambia el total acumulado
     Given un gestor con un gasto de 5 euros llamado "Café"
@@ -63,8 +63,6 @@ Feature: Gestión de gastos
 
   Scenario: Calcular el total de gastos por mes correctamente
     Given un gestor de gastos vacío
-    When añado un gasto de 20 euros llamado "Libros" con fecha "2025-01-15"
-    And añado un gasto de 15 euros llamado "Cena" con fecha "2025-01-20"
-    Then el mes "2025-01" debe sumar 35 euros
-  
-  
+    When añado un gasto de 20 euros llamado Libros con fecha 2025-01-15
+    And añado un gasto de 15 euros llamado Cena con fecha 2025-01-20
+    Then el mes 2025-01 debe sumar 35 euros
