@@ -3,29 +3,41 @@ name: CI
 on:
   push:
     branches: ["**"]
+  pull_request:
+    branches: ["**"]
 
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
 
       - name: Install dependencies
-
-      - name: Install ruff and mypy
+        run: uv sync
 
       - name: Ruff format
+        run: uv run ruff format . --check
 
       - name: Ruff linter
+        run: uv run ruff check .
 
       - name: Mypy
+        run: uv run mypy .
 
       - name: Unit tests
+        run: uv run pytest core/tests/unit
 
       - name: Integration tests
+        run: uv run pytest core/tests/integration
 
       - name: BDD tests
+        run: uv run pytest core/tests/behaviour

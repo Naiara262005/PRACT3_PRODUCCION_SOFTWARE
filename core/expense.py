@@ -4,6 +4,7 @@ from datetime import date
 from core.domain_error import (
     InvalidAmountError,
     InvalidExpenseDateError,
+    EmptyTitleError,
 )
 
 
@@ -19,7 +20,9 @@ class Expense:
         """
         FIXME: Revisen si falta algo que comprobar...
         """
-
+        if not self.title:
+            raise EmptyTitleError()
+        
         if self.amount <= 0:
             raise InvalidAmountError("El importe debe ser mayor que 0")
 
